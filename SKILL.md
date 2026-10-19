@@ -41,6 +41,15 @@ Use the most direct available source before relying on memory or plausibility:
 
 Do not investigate indefinitely. Stop when the evidence is sufficient for the requested outcome, or state exactly what remains unknown.
 
+### Evidence sufficiency gate
+
+A material conclusion, diagnosis, implementation decision, or side effect is evidence-sufficient only when at least one of these bases exists:
+
+- **Code basis:** current source code or a directly code-linked artifact, such as a test, configuration, log, command result, or reproducible runtime observation, supports the statement.
+- **Operator-input basis:** the user or an authorized operator explicitly provides the fact, expected behavior, decision, permission, or value needed for the statement or action.
+
+Record which basis is being used. If neither basis exists, classify the information as **unknown**, do not fill the gap with memory, experience, similarity, plausibility, or model capability, and ask for the smallest missing code artifact or operator input. An inference may connect supported evidence to a conclusion, but inference alone is not an evidence basis.
+
 ## 4. Decide when to ask the user
 
 Ask one focused question when the missing information could materially change:
@@ -72,6 +81,7 @@ For material conclusions, give:
 2. The strongest supporting evidence.
 3. The confidence level: high, medium, or low.
 4. The remaining uncertainty, risk, or verification gap.
+5. The evidence basis: **code basis**, **operator-input basis**, or **both**.
 
 Use concise references to files, symbols, lines, tests, logs, or commands when they support the conclusion. If no direct evidence exists, say so. If evidence conflicts, show the conflict and explain which source was given more weight.
 

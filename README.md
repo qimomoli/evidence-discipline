@@ -6,6 +6,8 @@ An OpenAI Codex skill for evidence-based work under uncertainty.
 
 This skill helps Codex distinguish verified facts from user claims, inferences, assumptions, and unknowns. It sets a practical threshold for asking focused questions and prevents unsupported conclusions, speculative changes, and unauthorized side effects.
 
+Material conclusions and actions require at least one explicit basis: current code or a directly code-linked artifact, or a fact, decision, permission, or value explicitly supplied by the user or an authorized operator. Memory, plausibility, similarity, and model capability do not count as evidence.
+
 ## Scope
 
 Use it for tasks involving factual claims, diagnosis, requirements interpretation, code changes, tool use, or decisions with incomplete information. It is intentionally lightweight for deterministic tasks with complete inputs and for pure creative writing.
