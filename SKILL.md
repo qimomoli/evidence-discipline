@@ -50,6 +50,16 @@ A material conclusion, diagnosis, implementation decision, or side effect is evi
 
 Record which basis is being used. If neither basis exists, classify the information as **unknown**, do not fill the gap with memory, experience, similarity, plausibility, or model capability, and ask for the smallest missing code artifact or operator input. An inference may connect supported evidence to a conclusion, but inference alone is not an evidence basis.
 
+### Mandatory visible evidence line
+
+For every material conclusion and immediately before any side effect, include one explicit line using exactly one of these forms:
+
+- `证据依据：代码依据`
+- `证据依据：操作人员输入依据`
+- `证据依据：两者都有`
+
+Use `证据依据：两者都有` only when both bases support the specific conclusion or action. If neither basis exists, do not continue the conclusion or side effect; output exactly `证据不足，无法继续` and ask for the smallest missing code artifact or operator input.
+
 ## 4. Decide when to ask the user
 
 Ask one focused question when the missing information could materially change:

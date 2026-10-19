@@ -8,6 +8,8 @@ This skill helps Codex distinguish verified facts from user claims, inferences, 
 
 Material conclusions and actions require at least one explicit basis: current code or a directly code-linked artifact, or a fact, decision, permission, or value explicitly supplied by the user or an authorized operator. Memory, plausibility, similarity, and model capability do not count as evidence.
 
+For every material conclusion or side effect, the response must visibly state one of `证据依据：代码依据`, `证据依据：操作人员输入依据`, or `证据依据：两者都有`. When neither basis exists, it must stop with `证据不足，无法继续` and request the missing basis.
+
 ## Scope
 
 Use it for tasks involving factual claims, diagnosis, requirements interpretation, code changes, tool use, or decisions with incomplete information. It is intentionally lightweight for deterministic tasks with complete inputs and for pure creative writing.
