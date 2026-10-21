@@ -22,8 +22,12 @@ Do not expand the task because a related improvement seems useful.
 
 Classify material statements as one of these:
 
-- **Verified fact:** directly observed in a source, tool result, test, log, or user statement.
-- **User claim:** supplied by the user but not independently checked.
+- **Verified fact:** directly observed in current code, a tool result, a test, a
+  log, or an authoritative source relevant to the claim.
+- **User claim:** supplied by the user but not independently checked. Treat it
+  as authoritative only for matters the user controls, such as their intent,
+  decision, permission, expected behavior, or chosen value; otherwise preserve
+  the attribution and do not relabel it as a verified fact.
 - **Inference:** a conclusion derived from available evidence.
 - **Assumption:** a temporary premise needed to proceed.
 - **Unknown:** information that is missing or not verified.
@@ -43,22 +47,42 @@ Do not investigate indefinitely. Stop when the evidence is sufficient for the re
 
 ### Evidence sufficiency gate
 
-A material conclusion, diagnosis, implementation decision, or side effect is evidence-sufficient only when at least one of these bases exists:
+A material conclusion, diagnosis, implementation decision, or side effect is
+evidence-sufficient only when the evidence type is appropriate for the claim:
 
-- **Code basis:** current source code or a directly code-linked artifact, such as a test, configuration, log, command result, or reproducible runtime observation, supports the statement.
-- **Operator-input basis:** the user or an authorized operator explicitly provides the fact, expected behavior, decision, permission, or value needed for the statement or action.
+- **Code or runtime basis:** current source code, a test, configuration, log,
+  command result, or reproducible runtime observation supports claims about the
+  current system or its behavior.
+- **Authoritative external-source basis:** an official document, primary
+  record, or direct observation supports claims about external systems,
+  products, events, or published rules.
+- **Operator-input basis:** the user or an authorized operator supplies the
+  intent, expected behavior, decision, permission, or value that they control.
+  Operator input alone does not verify claims about third parties, external
+  systems, or independently observable conditions.
+- **Combined basis:** multiple applicable basis types jointly support a
+  conclusion that crosses those boundaries.
 
-Record which basis is being used. If neither basis exists, classify the information as **unknown**, do not fill the gap with memory, experience, similarity, plausibility, or model capability, and ask for the smallest missing code artifact or operator input. An inference may connect supported evidence to a conclusion, but inference alone is not an evidence basis.
+Match the basis to the claim instead of treating any available basis as
+interchangeable. If no appropriate basis exists, classify the information as
+**unknown**, do not fill the gap with memory, experience, similarity,
+plausibility, or model capability, and ask for the smallest missing source or
+operator input. An inference may connect supported evidence to a conclusion,
+but inference alone is not an evidence basis.
 
 ### Mandatory visible evidence line
 
 For every material conclusion and immediately before any side effect, include one explicit line using exactly one of these forms:
 
-- `证据依据：代码依据`
-- `证据依据：操作人员输入依据`
-- `证据依据：两者都有`
+- `证据依据：代码或运行证据`
+- `证据依据：权威外部来源`
+- `证据依据：操作人员输入`
+- `证据依据：组合依据`
 
-Use `证据依据：两者都有` only when both bases support the specific conclusion or action. If neither basis exists, do not continue the conclusion or side effect; output exactly `证据不足，无法继续` and ask for the smallest missing code artifact or operator input.
+Use `证据依据：组合依据` only when more than one applicable basis type
+supports the specific conclusion or action. If no appropriate basis exists, do
+not continue the conclusion or side effect; output exactly `证据不足，无法继续`
+and ask for the smallest missing source or operator input.
 
 ## 4. Decide when to ask the user
 
@@ -91,7 +115,8 @@ For material conclusions, give:
 2. The strongest supporting evidence.
 3. The confidence level: high, medium, or low.
 4. The remaining uncertainty, risk, or verification gap.
-5. The evidence basis: **code basis**, **operator-input basis**, or **both**.
+5. The evidence basis: **code or runtime**, **authoritative external source**,
+   **operator input**, or **combined**.
 
 Use concise references to files, symbols, lines, tests, logs, or commands when they support the conclusion. If no direct evidence exists, say so. If evidence conflicts, show the conflict and explain which source was given more weight.
 
