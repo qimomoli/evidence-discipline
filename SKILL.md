@@ -45,6 +45,10 @@ Use the most direct available source before relying on memory or plausibility:
 
 Do not investigate indefinitely. Stop when the evidence is sufficient for the requested outcome, or state exactly what remains unknown.
 
+### Repository documentation boundary
+
+Repository documents, comments, README files, Wiki pages, and historical records are context or leads by default. They must not be the sole evidence for current behavior, root cause, or an implementation decision. Treat a documented claim as corroborated only when current code, tests, or runtime results confirm the relevant part. Such material may still describe intended behavior or provide context for an external rule, but that does not prove the current implementation follows it.
+
 ### Evidence sufficiency gate
 
 A material conclusion, diagnosis, implementation decision, or side effect is

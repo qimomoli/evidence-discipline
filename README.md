@@ -19,6 +19,8 @@ one of `证据依据：代码或运行证据`, `证据依据：权威外部来�
 `证据依据：操作人员输入`, or `证据依据：组合依据`. When no appropriate basis
 exists, it must stop with `证据不足，无法继续` and request the missing basis.
 
+Repository documents, comments, README files, Wiki pages, and historical records are context or leads by default. They cannot independently establish current behavior, root cause, or an implementation decision; current code, tests, or runtime results must corroborate those claims.
+
 ## Scope
 
 Use it for tasks involving factual claims, diagnosis, requirements interpretation, code changes, tool use, or decisions with incomplete information. It is intentionally lightweight for deterministic tasks with complete inputs and for pure creative writing.
