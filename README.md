@@ -21,6 +21,10 @@ exists, it must stop with `证据不足，无法继续` and request the missing 
 
 Repository documents, comments, README files, Wiki pages, and historical records are context or leads by default. They cannot independently establish current behavior, root cause, or an implementation decision; current code, tests, or runtime results must corroborate those claims.
 
+Code content and code provenance are separate claims. A local file, package name, code similarity, local Git commit, or local Git history proves only that the content exists in that local source; it does not prove official vendor or upstream origin. Official-origin claims require a directly verifiable authoritative repository, URL, artifact, or commit.
+
+Assumptions are not an allowed working basis. When an unverified detail could affect correctness, scope, provenance, permission, or a side effect, ask the operator for the smallest required input or confirmation. Do not choose a default or continue under an assumption; stop at the evidence boundary when the input is unavailable.
+
 ## Scope
 
 Use it for tasks involving factual claims, diagnosis, requirements interpretation, code changes, tool use, or decisions with incomplete information. It is intentionally lightweight for deterministic tasks with complete inputs and for pure creative writing.
